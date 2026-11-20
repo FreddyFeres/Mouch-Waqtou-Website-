@@ -23,3 +23,12 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Scratch / temp files from development
+temp_*.jpg
+test_*.jpg
+check_*.jpg
+title_*.jpg
+8b67d_*.jpg
+Elaa_*.jpg
+copy_assets.py
