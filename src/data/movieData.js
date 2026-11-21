@@ -254,6 +254,7 @@ export const movieData = {
     ],
   },
   gallery: [
+    { src: "/assets/posters/cinema_hero_banner.jpg", title: "Official Ensemble Master Poster — موش وقتو !", tag: "Master Poster" },
     { src: "/assets/gallery/cinema_release_poster.jpg", title: "Cinema Release Poster — Un Film de Feres Fatmi", tag: "Official Poster" },
     { src: "/assets/gallery/don_aurora_official.jpg", title: "Rahma Maalaoui as Don Aurora — Lakamura Mafia", tag: "Lakamura Mafia" },
     { src: "/assets/gallery/vincenzo_official.jpg", title: "Ghaith est Vincenzo — Lakamura Mafia", tag: "Lakamura Mafia" },

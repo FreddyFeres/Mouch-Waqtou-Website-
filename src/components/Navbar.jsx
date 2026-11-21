@@ -49,8 +49,8 @@ export default function Navbar({ onOpenTrailer, isPlayingMusic, onToggleMusic })
       <header 
         className={`pointer-events-auto max-w-7xl mx-auto rounded-2xl transition-all duration-300 border ${
           isScrolled 
-            ? 'bg-[#0a0a0d]/92 backdrop-blur-xl border-neutral-800/90 shadow-2xl shadow-black/80 py-2.5 px-4 sm:px-6' 
-            : 'bg-black/50 backdrop-blur-md border-white/10 py-3.5 px-4 sm:px-6'
+            ? 'bg-[#090b12]/92 backdrop-blur-xl border-amber-500/30 shadow-2xl shadow-black/90 py-2.5 px-4 sm:px-6' 
+            : 'bg-[#090b12]/60 backdrop-blur-md border-amber-500/20 py-3.5 px-4 sm:px-6 shadow-xl shadow-amber-950/20'
         }`}
       >
         <div className="flex items-center justify-between gap-4">

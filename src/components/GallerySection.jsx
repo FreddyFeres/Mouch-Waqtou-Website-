@@ -6,10 +6,11 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
-    <section id="gallery" className="py-24 relative bg-[#070709] border-t border-neutral-900 scroll-mt-24 overflow-hidden">
+    <section id="gallery" className="py-24 relative bg-[#08090d] border-t border-amber-950/30 scroll-mt-24 overflow-hidden">
       
-      {/* Background glow */}
-      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      {/* Background glow matching sunset amber and deep dusk */}
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -31,39 +32,44 @@ export default function GallerySection() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {movieData.gallery.map((item, idx) => (
-            <div
-              key={idx}
-              onClick={() => setSelectedImage(item)}
-              className="group relative rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800/80 hover:border-amber-500/50 cursor-pointer shadow-lg transition-all duration-300 aspect-[3/4]"
-            >
-              <img
-                src={item.src}
-                alt={item.title}
-                className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-              
-              {/* Tag Pill */}
-              <div className="absolute top-3 left-3">
-                <span className="px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-[10px] font-mono text-amber-400 border border-amber-500/30">
-                  {item.tag}
-                </span>
-              </div>
+          {movieData.gallery.map((item, idx) => {
+            const isWidescreen = item.src.includes('cinema_hero_banner');
+            return (
+              <div
+                key={idx}
+                onClick={() => setSelectedImage(item)}
+                className={`group relative rounded-2xl overflow-hidden bg-neutral-950/90 border border-neutral-800/80 hover:border-amber-500/60 cursor-pointer shadow-lg hover:shadow-amber-500/10 transition-all duration-300 ${
+                  isWidescreen ? 'col-span-2 aspect-video' : 'aspect-[3/4]'
+                }`}
+              >
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                
+                {/* Tag Pill */}
+                <div className="absolute top-3 left-3">
+                  <span className="px-2.5 py-0.5 rounded-md bg-black/85 backdrop-blur-md text-[10px] font-mono text-amber-400 border border-amber-500/30">
+                    {item.tag}
+                  </span>
+                </div>
 
-              {/* Expand Icon */}
-              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-full bg-black/70 text-white">
-                <Maximize2 className="w-3.5 h-3.5" />
-              </div>
+                {/* Expand Icon */}
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-full bg-black/70 text-white">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
 
-              {/* Title */}
-              <div className="absolute bottom-3 left-3 right-3">
-                <h4 className="text-xs sm:text-sm font-bold text-white leading-tight">
-                  {item.title}
-                </h4>
+                {/* Title */}
+                <div className="absolute bottom-3 left-3 right-3">
+                  <h4 className="text-xs sm:text-sm font-bold text-white leading-tight">
+                    {item.title}
+                  </h4>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

@@ -41,11 +41,11 @@ export default function VideoCenter() {
   const currentTab = tabs.find((t) => t.id === activeTab) || tabs[0];
 
   return (
-    <section id="video-center" className="py-24 relative bg-[#09090c] border-t border-neutral-900 scroll-mt-24 overflow-hidden">
+    <section id="video-center" className="py-24 relative bg-[#08090d] border-t border-amber-950/30 scroll-mt-24 overflow-hidden">
       
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* Background ambient lighting matching poster dusk & amber flare */}
+      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

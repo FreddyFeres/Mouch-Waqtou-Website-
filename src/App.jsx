@@ -87,7 +87,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070709] text-neutral-100 flex flex-col selection:bg-amber-500/30 selection:text-amber-300">
+    <div className="min-h-screen bg-[#08090d] text-neutral-100 flex flex-col selection:bg-amber-500/40 selection:text-amber-200 relative overflow-x-hidden">
+      
+      {/* Global Cinematic Sunset Ambient Atmosphere */}
+      <div className="fixed top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-amber-600/10 via-amber-700/5 to-transparent rounded-full blur-[160px] pointer-events-none z-0"></div>
+      <div className="fixed bottom-0 left-0 w-[700px] h-[700px] bg-gradient-to-tr from-red-900/10 via-red-950/5 to-transparent rounded-full blur-[160px] pointer-events-none z-0"></div>
       
       {/* Sticky Navigation Bar */}
       <Navbar

@@ -9,10 +9,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#050506] border-t border-neutral-900 pt-16 pb-12 text-neutral-400">
+    <footer className="relative bg-[#06070a] border-t border-amber-950/40 pt-16 pb-12 text-neutral-400">
       
-      {/* Red/amber bottom glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-amber-500/40 to-transparent"></div>
+      {/* Red/amber bottom glow matching poster palette */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent"></div>
+      <div className="absolute bottom-0 right-10 w-96 h-48 bg-amber-500/5 blur-[100px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

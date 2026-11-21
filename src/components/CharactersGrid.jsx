@@ -87,18 +87,18 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
   };
 
   return (
-    <section id="characters" className="py-24 relative bg-[#070709] border-t border-neutral-900 scroll-mt-24 overflow-hidden">
+    <section id="characters" className="py-24 relative bg-[#080a10] border-t border-amber-500/20 scroll-mt-24 overflow-hidden">
       
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-red-950/20 rounded-full blur-[130px] pointer-events-none"></div>
-      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-amber-950/20 rounded-full blur-[130px] pointer-events-none"></div>
+      {/* Background ambient lighting matching Sunset Poster */}
+      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 left-0 w-[600px] h-[600px] bg-red-700/10 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/30 text-xs font-mono uppercase tracking-wider mb-4 shadow-sm">
-            <Users className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-xs font-mono uppercase tracking-wider mb-4 shadow-sm">
+            <Users className="w-3.5 h-3.5 text-amber-400" />
             <span>Character Profiles & Video Archive</span>
           </div>
 
@@ -106,19 +106,19 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
             THE CAST & EDITS
           </h2>
 
-          <p className="text-neutral-400 text-sm sm:text-base font-light max-w-xl mx-auto mb-2">
+          <p className="text-neutral-300 text-sm sm:text-base font-light max-w-xl mx-auto mb-2">
             Dive into the character profiles and fan edits inspired by our Instagram. Every character features their dedicated video clip and story arc.
           </p>
 
-          <p className="font-arabic text-base sm:text-lg text-amber-400 font-semibold mb-6">
+          <p className="font-arabic text-base sm:text-lg text-amber-400 font-bold mb-6">
             تعرّف على شخصيات موش وقتو وتفرّج في الفيديوهات الحصرية لكل شخصية
           </p>
 
-          <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-amber-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-red-600 via-amber-500 to-red-600 mx-auto rounded-full"></div>
         </div>
 
         {/* View Mode & Filter Controls Toolbar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 p-3 rounded-2xl bg-neutral-950/70 border border-neutral-800/80 backdrop-blur-md">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 p-3 rounded-2xl bg-[#0d1019]/80 border border-amber-500/20 backdrop-blur-md shadow-xl">
           
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
