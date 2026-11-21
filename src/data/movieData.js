@@ -168,7 +168,7 @@ export const movieData = {
       roleArabic: "مهندس الشبكات والأنظمة",
       badge: "IT Engineer",
       poster: "/assets/characters/bouhmid.png",
-      video: "/assets/videos/bouhmid.mp4",
+      video: null,
       quote: "Plan, Develop, Maintain, Improve. In cyber security, one backdoor controls the city.",
       bio: "Portrayed as Mohamed Ben Kraiem. The master technician behind Linux servers, GSM intercepts, and encrypted communications. Bouhmid builds secure firewalls to protect the team while breaking into police and mafia channels.",
       dossier: {

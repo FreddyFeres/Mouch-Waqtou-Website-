@@ -49,6 +49,12 @@ export default function App() {
   const handlePlayCharacterVideo = (character) => {
     // If character modal was open, close it or play inside video modal
     setSelectedCharacter(null);
+    if (!character.video) {
+      if (character.instagramEditUrl) {
+        window.open(character.instagramEditUrl, '_blank');
+      }
+      return;
+    }
     setVideoModal({
       isOpen: true,
       videoSrc: character.video,

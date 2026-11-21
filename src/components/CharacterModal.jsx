@@ -47,13 +47,25 @@ export default function CharacterModal({ character, onClose, onPlayVideo }) {
               </p>
             </div>
 
-            <button
-              onClick={() => onPlayVideo(character)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-900/50 transition-all hover:scale-105"
-            >
-              <Play className="w-4 h-4 fill-current" />
-              Watch Reel / Edit
-            </button>
+            {character.video ? (
+              <button
+                onClick={() => onPlayVideo(character)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-900/50 transition-all hover:scale-105"
+              >
+                <Play className="w-4 h-4 fill-current" />
+                Watch Reel / Edit
+              </button>
+            ) : (
+              <a
+                href={character.instagramEditUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-pink-900/50 transition-all hover:scale-105"
+              >
+                <InstagramIcon className="w-4 h-4" />
+                Watch on Instagram
+              </a>
+            )}
           </div>
         </div>
 
@@ -114,13 +126,15 @@ export default function CharacterModal({ character, onClose, onPlayVideo }) {
                 <InstagramIcon className="w-3.5 h-3.5" />
                 View Instagram Reel
               </a>
-              <button
-                onClick={() => onPlayVideo(character)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 text-xs font-bold transition-all shadow-md"
-              >
-                <Play className="w-3.5 h-3.5 fill-current" />
-                Play Video Clip
-              </button>
+              {character.video && (
+                <button
+                  onClick={() => onPlayVideo(character)}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 text-xs font-bold transition-all shadow-md"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  Play Video Clip
+                </button>
+              )}
             </div>
           </div>
 

@@ -251,23 +251,47 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
                           {char.badge}
                         </span>
 
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[10px] font-mono font-semibold text-neutral-300 border border-neutral-700/60">
-                          <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-                          VIDEO REEL READY
-                        </span>
+                        {char.video ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[10px] font-mono font-semibold text-neutral-300 border border-neutral-700/60">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                            VIDEO REEL READY
+                          </span>
+                        ) : (
+                          <a
+                            href={char.instagramEditUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-pink-950/70 backdrop-blur-md text-[10px] font-mono font-semibold text-pink-300 border border-pink-500/40 hover:bg-pink-900/80 transition-colors"
+                          >
+                            <InstagramIcon className="w-2.5 h-2.5 text-pink-400" />
+                            REEL ON INSTAGRAM
+                          </a>
+                        )}
                       </div>
 
                       {/* Big Interactive Hover Play Button */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px] z-10 gap-3">
-                        <button
-                          onClick={() => handleToggleInlinePlay(char.id)}
-                          className={`p-4 rounded-full ${theme.btn} shadow-2xl hover:scale-110 transition-transform flex items-center justify-center`}
-                          title={`Play ${char.name} reel directly on card`}
-                        >
-                          <Play className="w-7 h-7 fill-current ml-0.5" />
-                        </button>
+                        {char.video ? (
+                          <button
+                            onClick={() => handleToggleInlinePlay(char.id)}
+                            className={`p-4 rounded-full ${theme.btn} shadow-2xl hover:scale-110 transition-transform flex items-center justify-center`}
+                            title={`Play ${char.name} reel directly on card`}
+                          >
+                            <Play className="w-7 h-7 fill-current ml-0.5" />
+                          </button>
+                        ) : (
+                          <a
+                            href={char.instagramEditUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="p-4 rounded-full bg-gradient-to-tr from-amber-600 via-pink-600 to-purple-600 text-white shadow-2xl hover:scale-110 transition-transform flex items-center justify-center"
+                            title={`Watch ${char.name} reel on Instagram`}
+                          >
+                            <InstagramIcon className="w-7 h-7" />
+                          </a>
+                        )}
                         <span className="text-[11px] font-mono text-white bg-black/80 px-3 py-1 rounded-full border border-white/20">
-                          Click to Play Reel
+                          {char.video ? 'Click to Play Reel' : 'Watch on Instagram'}
                         </span>
                       </div>
 
@@ -338,36 +362,48 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
                   <div className="pt-4 border-t border-neutral-800/80 space-y-2.5">
                     
                     <div className="flex items-center gap-2">
-                      {/* Primary Button: Watch Video Reel (In-Card or Modal) */}
-                      <button
-                        onClick={() => handleToggleInlinePlay(char.id)}
-                        className={`flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl ${
-                          isPlayingInline 
-                            ? 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700' 
-                            : `${theme.btn}`
-                        } text-xs uppercase tracking-wider transition-all duration-200 shadow-md font-bold`}
-                      >
-                        {isPlayingInline ? (
-                          <>
-                            <Pause className="w-3.5 h-3.5" />
-                            <span>Stop In-Card Reel</span>
-                          </>
-                        ) : (
-                          <>
-                            <Play className="w-3.5 h-3.5 fill-current" />
-                            <span>Play Video Reel</span>
-                          </>
-                        )}
-                      </button>
+                      {char.video ? (
+                        <>
+                          <button
+                            onClick={() => handleToggleInlinePlay(char.id)}
+                            className={`flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl ${
+                              isPlayingInline 
+                                ? 'bg-neutral-800 text-neutral-200 hover:bg-neutral-700' 
+                                : `${theme.btn}`
+                            } text-xs uppercase tracking-wider transition-all duration-200 shadow-md font-bold`}
+                          >
+                            {isPlayingInline ? (
+                              <>
+                                <Pause className="w-3.5 h-3.5" />
+                                <span>Stop In-Card Reel</span>
+                              </>
+                            ) : (
+                              <>
+                                <Play className="w-3.5 h-3.5 fill-current" />
+                                <span>Play Video Reel</span>
+                              </>
+                            )}
+                          </button>
 
-                      {/* Modal Launcher */}
-                      <button
-                        onClick={() => onPlayCharacterVideo(char)}
-                        className="p-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 transition-colors"
-                        title="Open Theater Mode Modal"
-                      >
-                        <Play className="w-4 h-4" />
-                      </button>
+                          <button
+                            onClick={() => onPlayCharacterVideo(char)}
+                            className="p-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 transition-colors"
+                            title="Open Theater Mode Modal"
+                          >
+                            <Play className="w-4 h-4" />
+                          </button>
+                        </>
+                      ) : (
+                        <a
+                          href={char.instagramEditUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white text-xs uppercase tracking-wider transition-all duration-200 shadow-md font-bold"
+                        >
+                          <InstagramIcon className="w-3.5 h-3.5" />
+                          <span>Watch Reel on Instagram</span>
+                        </a>
+                      )}
 
                       {/* Detailed Dossier Inspector Button */}
                       <button
