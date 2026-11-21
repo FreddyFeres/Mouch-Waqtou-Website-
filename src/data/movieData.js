@@ -168,7 +168,7 @@ export const movieData = {
       roleArabic: "مهندس الشبكات والأنظمة",
       badge: "IT Engineer",
       poster: "/assets/characters/bouhmid.png",
-      video: null,
+      video: "/assets/videos/bouhmid.mp4",
       instagramEmbedUrl: "https://www.instagram.com/reel/DeeeGjftWCJ/embed/",
       instagramEditUrl: "https://www.instagram.com/reel/DeeeGjftWCJ/",
       quote: "Plan, Develop, Maintain, Improve. In cyber security, one backdoor controls the city.",
