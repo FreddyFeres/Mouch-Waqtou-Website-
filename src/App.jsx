@@ -22,6 +22,8 @@ export default function App() {
     subtitle: '',
     isYouTube: false,
     youtubeUrl: '',
+    isInstagram: false,
+    instagramUrl: '',
   });
 
   const handleOpenTrailer = () => {
@@ -32,6 +34,8 @@ export default function App() {
       subtitle: "Chapter 1: The Sunset Saga • Psychological Thriller",
       isYouTube: true,
       youtubeUrl: movieData.youtube.trailerUrl,
+      isInstagram: false,
+      instagramUrl: '',
     });
   };
 
@@ -43,26 +47,39 @@ export default function App() {
       subtitle: "Original Short Film Drama • Directed & Produced in Tunisia",
       isYouTube: true,
       youtubeUrl: movieData.youtube.fullMovieUrl,
+      isInstagram: false,
+      instagramUrl: '',
     });
   };
 
   const handlePlayCharacterVideo = (character) => {
     // If character modal was open, close it or play inside video modal
     setSelectedCharacter(null);
-    if (!character.video) {
-      if (character.instagramEditUrl) {
-        window.open(character.instagramEditUrl, '_blank');
-      }
-      return;
+    if (character.video) {
+      setVideoModal({
+        isOpen: true,
+        videoSrc: character.video,
+        title: `${character.name} (${character.nameArabic}) — Exclusive Video Reel`,
+        subtitle: `Actor: ${character.actor} • ${character.role} • Instagram Edit`,
+        isYouTube: false,
+        youtubeUrl: '',
+        isInstagram: false,
+        instagramUrl: character.instagramEditUrl || '',
+      });
+    } else if (character.instagramEmbedUrl) {
+      setVideoModal({
+        isOpen: true,
+        videoSrc: character.instagramEmbedUrl,
+        title: `${character.name} (${character.nameArabic}) — Official Instagram Reel`,
+        subtitle: `Actor: ${character.actor} • ${character.role} • Instagram Edit`,
+        isYouTube: false,
+        youtubeUrl: '',
+        isInstagram: true,
+        instagramUrl: character.instagramEditUrl || '',
+      });
+    } else if (character.instagramEditUrl) {
+      window.open(character.instagramEditUrl, '_blank');
     }
-    setVideoModal({
-      isOpen: true,
-      videoSrc: character.video,
-      title: `${character.name} (${character.nameArabic}) — Exclusive Video Reel`,
-      subtitle: `Actor: ${character.actor} • ${character.role} • Instagram Edit`,
-      isYouTube: false,
-      youtubeUrl: '',
-    });
   };
 
   const handleCloseVideoModal = () => {
@@ -126,6 +143,8 @@ export default function App() {
         subtitle={videoModal.subtitle}
         isYouTube={videoModal.isYouTube}
         youtubeUrl={videoModal.youtubeUrl}
+        isInstagram={videoModal.isInstagram}
+        instagramUrl={videoModal.instagramUrl}
       />
 
       {/* Character Dossier Modal */}

@@ -188,14 +188,24 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
                   {isPlayingInline ? (
                     /* Active Inline Video Player */
                     <div className="relative w-full h-full bg-black">
-                      <video
-                        src={char.video}
-                        autoPlay
-                        loop
-                        playsInline
-                        muted={inlineMuted}
-                        className="w-full h-full object-cover"
-                      />
+                      {char.video ? (
+                        <video
+                          src={char.video}
+                          autoPlay
+                          loop
+                          playsInline
+                          muted={inlineMuted}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : char.instagramEmbedUrl ? (
+                        <iframe
+                          src={char.instagramEmbedUrl}
+                          title={`${char.name} Reel`}
+                          className="w-full h-full border-0"
+                          allowTransparency="true"
+                          allow="encrypted-media"
+                        />
+                      ) : null}
                       
                       {/* Video Controls Overlay */}
                       <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-20">
@@ -205,13 +215,15 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
                         </span>
                         
                         <div className="flex items-center gap-1.5">
-                          <button
-                            onClick={() => setInlineMuted(!inlineMuted)}
-                            className="p-1.5 rounded-lg bg-black/70 text-white hover:bg-black border border-white/20 backdrop-blur-md"
-                            title={inlineMuted ? "Unmute" : "Mute"}
-                          >
-                            {inlineMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-amber-400" />}
-                          </button>
+                          {char.video && (
+                            <button
+                              onClick={() => setInlineMuted(!inlineMuted)}
+                              className="p-1.5 rounded-lg bg-black/70 text-white hover:bg-black border border-white/20 backdrop-blur-md"
+                              title={inlineMuted ? "Unmute" : "Mute"}
+                            >
+                              {inlineMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-amber-400" />}
+                            </button>
+                          )}
                           <button
                             onClick={() => setActiveInlineVideo(null)}
                             className="p-1.5 rounded-lg bg-black/70 text-white hover:bg-black border border-white/20 backdrop-blur-md"
@@ -251,7 +263,7 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
                           {char.badge}
                         </span>
 
-                        {char.video ? (
+                        {char.video || char.instagramEmbedUrl ? (
                           <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[10px] font-mono font-semibold text-neutral-300 border border-neutral-700/60">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
                             VIDEO REEL READY
@@ -271,27 +283,15 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
 
                       {/* Big Interactive Hover Play Button */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px] z-10 gap-3">
-                        {char.video ? (
-                          <button
-                            onClick={() => handleToggleInlinePlay(char.id)}
-                            className={`p-4 rounded-full ${theme.btn} shadow-2xl hover:scale-110 transition-transform flex items-center justify-center`}
-                            title={`Play ${char.name} reel directly on card`}
-                          >
-                            <Play className="w-7 h-7 fill-current ml-0.5" />
-                          </button>
-                        ) : (
-                          <a
-                            href={char.instagramEditUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="p-4 rounded-full bg-gradient-to-tr from-amber-600 via-pink-600 to-purple-600 text-white shadow-2xl hover:scale-110 transition-transform flex items-center justify-center"
-                            title={`Watch ${char.name} reel on Instagram`}
-                          >
-                            <InstagramIcon className="w-7 h-7" />
-                          </a>
-                        )}
+                        <button
+                          onClick={() => handleToggleInlinePlay(char.id)}
+                          className={`p-4 rounded-full ${theme.btn} shadow-2xl hover:scale-110 transition-transform flex items-center justify-center`}
+                          title={`Play ${char.name} reel directly on card`}
+                        >
+                          <Play className="w-7 h-7 fill-current ml-0.5" />
+                        </button>
                         <span className="text-[11px] font-mono text-white bg-black/80 px-3 py-1 rounded-full border border-white/20">
-                          {char.video ? 'Click to Play Reel' : 'Watch on Instagram'}
+                          Click to Play Reel
                         </span>
                       </div>
 
@@ -362,7 +362,7 @@ export default function CharactersGrid({ onSelectCharacter, onPlayCharacterVideo
                   <div className="pt-4 border-t border-neutral-800/80 space-y-2.5">
                     
                     <div className="flex items-center gap-2">
-                      {char.video ? (
+                      {char.video || char.instagramEmbedUrl ? (
                         <>
                           <button
                             onClick={() => handleToggleInlinePlay(char.id)}

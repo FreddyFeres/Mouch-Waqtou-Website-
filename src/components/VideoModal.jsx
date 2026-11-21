@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { X, Play, ExternalLink, Film } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 
-export default function VideoModal({ isOpen, onClose, videoSrc, title, subtitle, isYouTube, youtubeUrl }) {
+export default function VideoModal({ isOpen, onClose, videoSrc, title, subtitle, isYouTube, youtubeUrl, isInstagram, instagramUrl }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -46,8 +46,16 @@ export default function VideoModal({ isOpen, onClose, videoSrc, title, subtitle,
         </div>
 
         {/* Video Player */}
-        <div className="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden">
-          {isYouTube ? (
+        <div className={`relative w-full ${isInstagram ? 'aspect-[9/16] max-h-[70vh]' : 'aspect-video'} bg-black flex items-center justify-center overflow-hidden`}>
+          {isInstagram ? (
+            <iframe
+              src={videoSrc}
+              title={title}
+              className="w-full h-full border-0"
+              allowTransparency="true"
+              allow="encrypted-media"
+            />
+          ) : isYouTube ? (
             <iframe
               src={`${videoSrc}?autoplay=1&rel=0`}
               title={title}
@@ -84,6 +92,17 @@ export default function VideoModal({ isOpen, onClose, videoSrc, title, subtitle,
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 Open on YouTube
+              </a>
+            )}
+            {instagramUrl && (
+              <a 
+                href={instagramUrl} 
+                target="_blank" 
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-pink-600/30 to-purple-600/30 text-pink-300 hover:text-white border border-pink-500/40 transition-colors font-medium"
+              >
+                <InstagramIcon className="w-3.5 h-3.5 text-pink-400" />
+                Open Reel on Instagram
               </a>
             )}
             <a 

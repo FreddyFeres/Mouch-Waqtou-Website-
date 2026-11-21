@@ -47,7 +47,7 @@ export default function CharacterModal({ character, onClose, onPlayVideo }) {
               </p>
             </div>
 
-            {character.video ? (
+            {character.video || character.instagramEmbedUrl ? (
               <button
                 onClick={() => onPlayVideo(character)}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-900/50 transition-all hover:scale-105"
@@ -126,7 +126,7 @@ export default function CharacterModal({ character, onClose, onPlayVideo }) {
                 <InstagramIcon className="w-3.5 h-3.5" />
                 View Instagram Reel
               </a>
-              {character.video && (
+              {(character.video || character.instagramEmbedUrl) && (
                 <button
                   onClick={() => onPlayVideo(character)}
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 text-xs font-bold transition-all shadow-md"
